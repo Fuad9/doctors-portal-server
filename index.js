@@ -18,10 +18,6 @@ app.use(fileUpload());
 
 const port = 5000;
 
-app.get("/", (req, res) => {
-    res.send("hello from db it's working working");
-});
-
 var serviceAccount = require("./doctors-portal-ce75a-firebase-adminsdk-p264c-ddcad2881f.json");
 
 admin.initializeApp({
@@ -38,6 +34,10 @@ client.connect((err) => {
     const doctorCollection = client.db("doctorsPortal").collection("doctors");
     const bookingsCollection = client.db("doctorsPortal").collection("bookings");
     const prescriptionsCollection = client.db("doctorsPortal").collection("prescriptions");
+
+    app.get("/", (req, res) => {
+        res.send("hello from db it's working");
+    });
 
     // to add appointments
     app.post("/addAppointment", (req, res) => {
@@ -145,4 +145,4 @@ client.connect((err) => {
     });
 });
 
-app.listen(process.env.PORT || port, console.log("server listening at ", port));
+app.listen(process.env.PORT || port);
