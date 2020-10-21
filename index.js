@@ -116,12 +116,20 @@ client.connect((err) => {
     app.post("/isDoctor", (req, res) => {
         const email = req.body.email;
         doctorCollection.find({ email: email }).toArray((err, doctors) => {
-            res.send(doctors);
+            res.send(doctors.length > 0); //true or false
+        });
+    });
+
+    // to show prescriptionsShortList for specific patient
+    app.get("/showPrescriptions", (req, res) => {
+        prescriptionsCollection.find({}).toArray((err, documents) => {
+            res.send(documents);
         });
     });
 
     // to update patient appointment status
     app.patch("/statusUpdate", (req, res) => {
+        console.log(req.body.status);
         appointmentCollection
             .updateOne(
                 { _id: ObjectID(req.body.id) },
@@ -130,7 +138,8 @@ client.connect((err) => {
                 }
             )
             .then((result) => {
-                res.send(result.modifiedCount > 0);
+                res.send(result);
+                console.log(result);
             })
             .catch((err) => console.log(err));
     });
