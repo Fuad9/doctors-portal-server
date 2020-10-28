@@ -95,6 +95,7 @@ client.connect((err) => {
     app.get("/showBookings", (req, res) => {
         bookingsCollection.find({}).toArray((err, documents) => {
             res.send(documents);
+            console.log(documents);
         });
     });
 
@@ -145,4 +146,4 @@ client.connect((err) => {
     });
 });
 
-app.listen(process.env.PORT || port);
+app.listen(process.env.PORT || port, console.log("server is running at " + port));
