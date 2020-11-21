@@ -5,7 +5,7 @@ const fileUpload = require("express-fileupload");
 const MongoClient = require("mongodb").MongoClient;
 const { ObjectID } = require("mongodb");
 require("dotenv").config();
-const admin = require("firebase-admin");
+// const admin = require("firebase-admin");
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y0wvq.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
@@ -18,12 +18,12 @@ app.use(fileUpload());
 
 const port = 5000;
 
-var serviceAccount = require("./doctors-portal-ce75a-firebase-adminsdk-p264c-9e58591505.json");
+// var serviceAccount = require("./doctors-portal-ce75a-firebase-adminsdk-p264c-9e58591505.json");
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://doctors-portal-ce75a.firebaseio.com",
-});
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: "https://doctors-portal-ce75a.firebaseio.com",
+// });
 
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
