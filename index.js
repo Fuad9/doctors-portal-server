@@ -18,7 +18,7 @@ app.use(fileUpload());
 
 const port = 5000;
 
-var serviceAccount = require("./doctors-portal-ce75a-firebase-adminsdk-p264c-ddcad2881f.json");
+var serviceAccount = require("./doctors-portal-ce75a-firebase-adminsdk-p264c-9e58591505.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
